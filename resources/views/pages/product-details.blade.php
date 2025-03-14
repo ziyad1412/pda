@@ -75,26 +75,42 @@
 
 
                             <!-- Pilihan Ukuran -->
-                            <div class="mb-3">
-                                <h5 class="fw-bold">Pilih Ukuran:</h5>
-                                <div class="d-flex gap-2 flex-wrap">
-                                    <button class="size-btn" data-size="39">39</button>
-                                    <button class="size-btn" data-size="40">40</button>
-                                    <button class="size-btn" data-size="41">41</button>
-                                    <button class="size-btn" data-size="42">42</button>
-                                    <button class="size-btn" data-size="43">43</button>
+                            @php
+                                use Illuminate\Support\Arr;
+                                $sizes = is_array($product->size) ? Arr::flatten($product->size) : [];
+                            @endphp
+
+                            @if (!empty($sizes))
+                                <div class="mb-3">
+                                    <h5 class="fw-bold">Pilih Ukuran:</h5>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        @foreach ($sizes as $size)
+                                            <button class="size-btn">{{ $size }}</button>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
+
 
                             <!-- Pilihan Warna -->
-                            <div class="mb-3">
-                                <h5 class="fw-bold">Pilih Warna:</h5>
-                                <div class="d-flex gap-2 flex-wrap">
-                                    <button class="color-btn" data-color="Hitam" style="background-color: black;"></button>
-                                    <button class="color-btn" data-color="Merah" style="background-color: red;"></button>
-                                    <button class="color-btn" data-color="Biru" style="background-color: blue;"></button>
+                            @php
+                                $colors = is_array($product->color) ? Arr::flatten($product->color) : [];
+                            @endphp
+
+                            @if (!empty($colors))
+                                <div class="mb-3">
+                                    <h5 class="fw-bold">Pilih Warna:</h5>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        @foreach ($colors as $color)
+                                            <button class="color-btn" data-color="{{ $color }}"
+                                                style="background-color: {{ strtolower($color) }};"></button>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
+
 
                             <!-- Button Download Dokumen -->
                             <a href="{{ asset('storage/' . $product->certificate) }}" target="_blank"

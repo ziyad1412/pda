@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Article;
 use App\Models\Footer;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::paginate(9);
+        $articles = Article::latest()->paginate(6); // Menampilkan 6 artikel per halaman
 
-        // Ambil semua kategori
-        $categories = Category::all();
+
 
         $footer = Footer::first(); // Ambil satu data footer
 
-        return view('pages.products', compact('products', 'categories', 'footer'));
+        return view('pages.blog', compact('articles', 'footer'));
     }
 
     /**
@@ -45,22 +43,14 @@ class ProductController extends Controller
      */
     public function show($slug)
     {
-        // Cari produk berdasarkan slug
-        $product = Product::where('slug', $slug)->firstOrFail();
-
-        // Ambil semua gambar tambahan dari tabel product_images
-        $productImages = $product->images; // Pastikan ada relasi di model
-
-        $footer = Footer::first(); // Ambil data footer
-
-        return view('pages.product-details', compact('product', 'productImages', 'footer'));
+        $article = Article::where('slug', $slug)->firstOrFail();
+        return view('pages.blog-details', compact('article'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Article $article)
     {
         //
     }
@@ -68,7 +58,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Article $article)
     {
         //
     }
@@ -76,7 +66,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Article $article)
     {
         //
     }

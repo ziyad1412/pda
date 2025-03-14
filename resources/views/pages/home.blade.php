@@ -13,6 +13,7 @@
 
     <main class="main">
         <!-- Hero Section -->
+
         <section id="hero" class="hero section dark-background">
             <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
@@ -47,6 +48,7 @@
             </div>
 
         </section><!-- /Hero Section -->
+        @include('partials.announcement')
 
         <!-- Constructions Section -->
         <section id="constructions" class="constructions section">
@@ -521,76 +523,6 @@
                         @endforeach
 
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-safety">
-                            <article class="position-relative h-100 border rounded shadow-sm p-3">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset('template/assets/img/products/product-Jaket Las Lynx.jpg') }}"
-                                        class="img-fluid rounded" alt="Jaket Las Lynx">
-                                </div>
-
-                                <div class="post-content d-flex flex-column mt-3">
-
-                                    <h3 class="post-title">
-                                        <a href="{{ url('/product-details') }}" class="stretched-link text-dark fw-bold">
-                                            Jaket Las Lynx
-                                        </a>
-                                    </h3>
-
-                                    <div class="d-flex justify-content-between align-items-center my-2">
-                                        <span class="text-danger fw-bold fs-4">Rp. 175.000</span>
-                                        <span class="badge bg-warning px-3 py-2">Safety Apparel</span>
-                                    </div>
-
-                                    <p class="text-muted">
-                                        JAKET SAFETY LAS LYNX Terbuat dari Kulit Suede Super tahan panas & anti goresan.
-                                    </p>
-
-                                    <a href="{{ url('/product-details') }}"
-                                        class="btn btn-warning text-white fw-bold w-100">
-                                        Lihat Produk <i class="bi bi-arrow-right"></i>
-                                    </a>
-
-                                </div>
-
-                            </article>
-                        </div><!-- End product item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-protection">
-                            <article class="position-relative h-100 border rounded shadow-sm p-3">
-
-                                <div class="post-img position-relative overflow-hidden">
-                                    <img src="{{ asset('template/assets/img/products/product-Earmuff Pro Gosave.jpg') }}"
-                                        class="img-fluid rounded" alt="Earmuff Pro Gosave">
-                                </div>
-
-                                <div class="post-content d-flex flex-column mt-3">
-
-                                    <h3 class="post-title">
-                                        <a href="{{ url('/product-details') }}" class="stretched-link text-dark fw-bold">
-                                            Earmuff Pro Gosave
-                                        </a>
-                                    </h3>
-
-                                    <div class="d-flex justify-content-between align-items-center my-2">
-                                        <span class="text-danger fw-bold fs-4">Rp. 70.000</span>
-                                        <span class="badge bg-warning px-3 py-2">Protection</span>
-                                    </div>
-
-                                    <p class="text-muted">
-                                        Earmuff Profresional dapat diadjust dan diputar, Kualitas High Quality Plastik.
-                                    </p>
-
-                                    <a href="{{ url('/product-details') }}"
-                                        class="btn btn-warning text-white fw-bold w-100">
-                                        Lihat Produk <i class="bi bi-arrow-right"></i>
-                                    </a>
-
-                                </div>
-
-                            </article>
-                        </div><!-- End product item -->
-
 
 
                     </div><!-- End Portfolio Container -->
@@ -648,8 +580,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('template/assets/img/testimonials/testimonials-1.jpg') }}"
-                                        class="testimonial-img" alt="">
+
                                     <h3>Rudi Hartono</h3>
                                     <h4>Manajer Proyek Konstruksi</h4>
                                     <div class="stars">
@@ -671,8 +602,6 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('template/assets/img/testimonials/testimonials-2.jpg') }}"
-                                        class="testimonial-img" alt="">
                                     <h3>Andi Wijaya</h3>
                                     <h4>Supervisor Pabrik</h4>
                                     <div class="stars">
@@ -694,8 +623,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('template/assets/img/testimonials/testimonials-3.jpg') }}"
-                                        class="testimonial-img" alt="">
+
                                     <h3>Siti Nuraini</h3>
                                     <h4>HRD Perusahaan Manufaktur</h4>
                                     <div class="stars">
@@ -717,8 +645,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('template/assets/img/testimonials/testimonials-4.jpg') }}"
-                                        class="testimonial-img" alt="">
+
                                     <h3>Rizal Pratama</h3>
                                     <h4>Teknisi Lapangan</h4>
                                     <div class="stars">
@@ -740,8 +667,7 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <img src="{{ asset('template/assets/img/testimonials/testimonials-5.jpg') }}"
-                                        class="testimonial-img" alt="">
+
                                     <h3>Budi Santoso</h3>
                                     <h4>Pengusaha Peralatan Safety</h4>
                                     <div class="stars">
@@ -784,102 +710,38 @@
 
                 <div class="row gy-5">
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
+                    @foreach ($articles as $article)
+                        <div class="col-xl-4 col-md-6">
+                            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="{{ asset('template/assets/img/blog/blog-1.jpg') }}" class="img-fluid"
-                                    alt="Artikel Terbaru">
-                                <span class="post-date">12 Desember</span>
-                            </div>
-
-                            <div class="post-content d-flex flex-column">
-                                <h3 class="post-title">Tips Memilih Alat Safety yang Tepat untuk Proyek Anda</h3>
-
-                                <div class="meta d-flex align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-person"></i> <span class="ps-2">Admin PTD</span>
-                                    </div>
-                                    <span class="px-3 text-black-50">/</span>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Safety & Teknik</span>
-                                    </div>
+                                <div class="post-img position-relative overflow-hidden">
+                                    <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid"
+                                        alt="{{ $article->title }}">
+                                    <span
+                                        class="post-date">{{ \Carbon\Carbon::parse($article->created_at)->translatedFormat('d F Y') }}</span>
                                 </div>
 
-                                <hr>
+                                <div class="post-content d-flex flex-column">
+                                    <h3 class="post-title">{{ $article->title }}</h3>
 
-                                <a href="{{ url('/blog') }}" class="readmore stretched-link">
-                                    <span>Baca Selengkapnya</span><i class="bi bi-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-                    </div><!-- End post item -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
-
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="{{ asset('template/assets/img/blog/blog-2.jpg') }}" class="img-fluid"
-                                    alt="Artikel Terbaru">
-                                <span class="post-date">12 Desember</span>
-                            </div>
-
-                            <div class="post-content d-flex flex-column">
-                                <h3 class="post-title">Tips Memilih Alat Safety yang Tepat untuk Proyek Anda</h3>
-
-                                <div class="meta d-flex align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-person"></i> <span class="ps-2">Admin PTD</span>
+                                    <div class="meta d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-person"></i> <span class="ps-2">Admin PTD</span>
+                                        </div>
                                     </div>
-                                    <span class="px-3 text-black-50">/</span>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Safety & Teknik</span>
-                                    </div>
+
+                                    <hr>
+
+                                    <a href="{{ url('/blog/' . $article->slug) }}" class="readmore stretched-link">
+                                        <span>Baca Selengkapnya</span><i class="bi bi-arrow-right"></i>
+                                    </a>
+
                                 </div>
 
-                                <hr>
-
-                                <a href="{{ url('/blog') }}" class="readmore stretched-link">
-                                    <span>Baca Selengkapnya</span><i class="bi bi-arrow-right"></i>
-                                </a>
-
                             </div>
-
                         </div>
-                    </div><!-- End post item -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
+                    @endforeach
 
-                            <div class="post-img position-relative overflow-hidden">
-                                <img src="{{ asset('template/assets/img/blog/blog-3.jpg') }}" class="img-fluid"
-                                    alt="Artikel Terbaru">
-                                <span class="post-date">12 Desember</span>
-                            </div>
-
-                            <div class="post-content d-flex flex-column">
-                                <h3 class="post-title">Tips Memilih Alat Safety yang Tepat untuk Proyek Anda</h3>
-
-                                <div class="meta d-flex align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-person"></i> <span class="ps-2">Admin PTD</span>
-                                    </div>
-                                    <span class="px-3 text-black-50">/</span>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-folder2"></i> <span class="ps-2">Safety & Teknik</span>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <a href="{{ url('/blog') }}" class="readmore stretched-link">
-                                    <span>Baca Selengkapnya</span><i class="bi bi-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-                    </div><!-- End post item -->
 
 
                 </div>

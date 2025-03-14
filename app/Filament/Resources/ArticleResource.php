@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\ArticleResource\Pages;
+use App\Filament\Resources\ArticleResource\RelationManagers;
+use App\Models\Article;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,32 +15,43 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
 
-class CategoryResource extends Resource
+class ArticleResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-queue-list';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $label = 'Kategori Produk';
+    protected static ?string $label = 'Artikel';
 
-    protected static ?string $navigationLabel = 'Kategori Produk';
+    protected static ?string $navigationLabel = 'Artikel';
 
-    protected static ?string $navigationGroup = 'Kelola Produk';
+    protected static ?string $navigationGroup = 'Kelola Artikel';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                //
+                Forms\Components\TextInput::make('title')
+                    ->label('Judul Artikel')
                     ->required()
                     ->debounce(500)
                     ->reactive()
-                    ->label('Category Name')
                     ->afterStateUpdated(function ($state, callable $set) {
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\TextInput::make('slug')
-                    ->label('Slug')
+                    ->required(),
+                Forms\Components\FileUpload::make('image')
+                    ->label('Gambar Utama')
+                    ->image()
+                    ->columnSpan(2)
+                    ->directory('articles')
+                    ->required(),
+                Forms\Components\RichEditor::make('content')
+                    ->label('Isi Artikel')
+                    ->columnSpan(2)
                     ->required(),
             ]);
     }
@@ -49,9 +60,11 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->label('Kategori Produk')
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Judul Artikel')
                     ->searchable(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar Utama')
             ])
             ->filters([
                 //
@@ -78,9 +91,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListArticles::route('/'),
+            'create' => Pages\CreateArticle::route('/create'),
+            'edit' => Pages\EditArticle::route('/{record}/edit'),
         ];
     }
 }

@@ -22,6 +22,11 @@ class Product extends Model
         'certificate',
     ];
 
+    protected $casts = [
+        'color' => 'array', // Pastikan Laravel menganggap ini sebagai array (JSON)
+        'size' => 'array',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

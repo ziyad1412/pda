@@ -17,7 +17,11 @@ class FooterResource extends Resource
 {
     protected static ?string $model = Footer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $label = 'Alamat & Kontak';
+
+    protected static ?string $navigationIcon = 'heroicon-o-map';
+
+    protected static ?string $navigationLabel = 'Alamat & Kontak';
 
     public static function form(Form $form): Form
     {
@@ -43,14 +47,19 @@ class FooterResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('address'),
-                Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label('Nomor WA'),
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Email'),
+                Tables\Columns\TextColumn::make('address')
+                    ->label('Alamat'),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

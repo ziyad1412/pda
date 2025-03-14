@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
@@ -14,12 +15,15 @@ class HomeController extends Controller
         // Ambil 3 produk terbaru
         $products = Product::latest()->take(3)->get();
 
-        // Ambil semua kategori
-        $categories = Category::all();
+        // Ambil 3 kategori
+        $categories = Category::take(3)->get();
+
+        // ambil 3 artikel terbaru
+        $articles = Article::latest()->take(3)->get();
 
         $footer = Footer::first(); // Ambil satu data footer
 
-        return view('pages.home', compact('products', 'categories', 'footer'));
+        return view('pages.home', compact('products', 'categories', 'footer', 'articles'));
     }
 
     public function about()

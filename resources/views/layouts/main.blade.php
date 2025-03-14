@@ -32,6 +32,8 @@
 <body class="index-page">
 
     <!-- Header -->
+
+
     @include('partials.navbar')
 
     <!-- Main Content -->
@@ -49,7 +51,7 @@
     </a>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/6281215201311?text=Halo, Putra Tunggal Daya... saya ingin bertanya" target="_blank"
+    <a href="https://wa.me/{{ $footer->phone }}?text=Halo, Putra Tunggal Daya... saya ingin bertanya" target="_blank"
         id="whatsapp-button" class="whatsapp-button d-flex align-items-center justify-content-center">
         <i class="bi bi-whatsapp"></i>
         <span>Kontak Kami</span>

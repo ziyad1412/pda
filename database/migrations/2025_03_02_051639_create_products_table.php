@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->foreignId('category_id')->constrained;
             $table->integer('price');
-            $table->string('color')->nullable(); // Warna produk (opsional)
-            $table->string('size')->nullable(); // Ukuran produk (opsional)
+            $table->json('color')->nullable(); // Warna produk (opsional)
+            $table->json('size')->nullable(); // Ukuran produk (opsional)
             $table->string('stock');
             $table->text('description');
             $table->string('certificate');
