@@ -65,6 +65,7 @@
                         @endforeach
 
 
+
                     </div><!-- End Portfolio Container -->
 
                 </div>
@@ -91,6 +92,39 @@
                 border-color: #ffc107;
             }
         </style>
+
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var grid = document.querySelector('.isotope-container');
+                if (grid) {
+                    var iso = new Isotope(grid, {
+                        itemSelector: '.isotope-item',
+                        layoutMode: 'masonry'
+                    });
+
+                    // Event listener untuk filter klik
+                    var filters = document.querySelectorAll('.portfolio-filters li');
+                    filters.forEach(function(filter) {
+                        filter.addEventListener('click', function() {
+                            var filterValue = filter.getAttribute('data-filter');
+                            console.log("Filter dipilih:",
+                                filterValue); // Cek di console apakah event jalan
+                            iso.arrange({
+                                filter: filterValue
+                            });
+
+                            // Tambahkan class aktif ke filter yang dipilih
+                            filters.forEach(f => f.classList.remove('filter-active'));
+                            filter.classList.add('filter-active');
+                        });
+                    });
+                } else {
+                    console.error("Isotope container tidak ditemukan!");
+                }
+            });
+        </script>
+
 
     </main>
 @endsection

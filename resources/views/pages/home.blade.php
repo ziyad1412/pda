@@ -471,14 +471,6 @@
 
                 <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
-                    <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                        <li data-filter="*" class="filter-active">All</li>
-                        @foreach ($categories as $category)
-                            <li data-filter=".filter-{{ Str::slug($category->name) }}">{{ $category->name }}</li>
-                        @endforeach
-                    </ul>
-
-
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
 
@@ -575,6 +567,34 @@
           }
         }
       </script>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const swiper = new Swiper(".init-swiper", {
+                                loop: true,
+                                speed: 600,
+                                autoplay: {
+                                    delay: 5000
+                                },
+                                slidesPerView: "auto",
+                                pagination: {
+                                    el: ".swiper-pagination",
+                                    type: "bullets",
+                                    clickable: true
+                                },
+                                breakpoints: {
+                                    320: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 40
+                                    },
+                                    1200: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 20
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+
                     <div class="swiper-wrapper">
 
                         <div class="swiper-slide">

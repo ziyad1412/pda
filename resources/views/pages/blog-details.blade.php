@@ -53,4 +53,13 @@
         </div>
     </main>
 
+    <style>
+        .content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+
 @endsection

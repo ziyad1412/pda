@@ -4,7 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    {{-- <meta name="description" content="Putra Tunggal Daya adalah toko safety tools">
+    <meta name="author" content="PUTRA TUNGGAL DAYA">
+    <meta name="keyword" content="Putra,Tunggal, Daya, Putra Tunggal Daya"> --}}
+
     <title>@yield('title')</title>
+
+    {{-- <meta property="og:title" content="PUTRA TUNGGAL DAYA">
+    <meta property="og:site_name" content="Putra Tunggal Daya">
+    <meta property="og:description" content="Putra Tunggal Daya adalah toko safety tools">
+    <meta property="og:url" content="putratunggaldaya.com">
+    <meta property="og:type" content="website"> --}}
 
     <!-- Favicons -->
     <link href="{{ asset('template/assets/img/logo3.jpg') }}" rel="icon">
