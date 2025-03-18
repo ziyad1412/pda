@@ -73,11 +73,13 @@
                             </div>
 
 
-
                             <!-- Pilihan Ukuran -->
                             @php
                                 use Illuminate\Support\Arr;
-                                $sizes = is_array($product->size) ? Arr::flatten($product->size) : [];
+                                $sizes =
+                                    !empty($product->size) && is_array($product->size)
+                                        ? array_filter(Arr::flatten($product->size)) // Hapus elemen kosong
+                                        : [];
                             @endphp
 
                             @if (!empty($sizes))
@@ -91,11 +93,12 @@
                                 </div>
                             @endif
 
-
-
                             <!-- Pilihan Warna -->
                             @php
-                                $colors = is_array($product->color) ? Arr::flatten($product->color) : [];
+                                $colors =
+                                    !empty($product->color) && is_array($product->color)
+                                        ? array_filter(Arr::flatten($product->color)) // Hapus elemen kosong
+                                        : [];
                             @endphp
 
                             @if (!empty($colors))
@@ -109,6 +112,7 @@
                                     </div>
                                 </div>
                             @endif
+
 
 
 

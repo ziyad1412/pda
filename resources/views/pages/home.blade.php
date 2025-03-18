@@ -500,7 +500,7 @@
                                         </div>
 
                                         <p class="text-muted">
-                                            {{ Str::limit(strip_tags($product->description), 80) }}
+                                            {{ Str::limit(strip_tags($product->description), 70) }}
                                         </p>
 
                                         <a href="{{ url('/product-details/' . $product->slug) }}"
