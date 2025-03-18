@@ -20,10 +20,7 @@
                             data-aos-delay="200">
                             <i class="bi bi-geo-alt"></i>
                             <h3>Alamat</h3>
-                            <p class="text-center">Jl. Labu No.42, RT.2/RW.6, Glodok, Kec. Taman Sari, Kota Jakarta Barat,
-                                <br> Daerah Khusus
-                                Ibukota
-                                Jakarta 11120
+                            <p class="text-center">{{ $footer->address }}
                             </p>
 
                         </div>
@@ -34,7 +31,7 @@
                             data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-telephone"></i>
                             <h3>Telepon</h3>
-                            <p>+6281215201311</p>
+                            <p>+{{ $footer->phone }}</p>
                         </div>
                     </div><!-- End Info Item -->
 
@@ -43,7 +40,7 @@
                             data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-envelope"></i>
                             <h3>Email</h3>
-                            <p>info@putratunggaldaya.com</p>
+                            <p>{{ $footer->email }}</p>
                         </div>
                     </div><!-- End Info Item -->
 
@@ -59,16 +56,16 @@
                     </div><!-- End Google Maps -->
 
                     <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="400">
+                        <form
+                            action="https://wa.me/{{ $footer->phone }}?text=Name:%20YourName%0AEmail:%20YourEmail%0ASubject:%20YourSubject%0AMessage:%20YourMessage"
+                            method="get" class="php-email-form">
                             <div class="row gy-4">
-
                                 <div class="col-md-6">
                                     <input type="text" name="name" class="form-control" placeholder="Your Name"
                                         required="">
                                 </div>
 
-                                <div class="col-md-6 ">
+                                <div class="col-md-6">
                                     <input type="email" class="form-control" name="email" placeholder="Your Email"
                                         required="">
                                 </div>
@@ -83,15 +80,11 @@
                                 </div>
 
                                 <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
                                     <button type="submit">Send Message</button>
                                 </div>
-
                             </div>
                         </form>
+
                     </div><!-- End Contact Form -->
 
                 </div>
