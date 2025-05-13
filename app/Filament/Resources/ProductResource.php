@@ -42,48 +42,7 @@ class ProductResource extends Resource
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\TextInput::make('slug')
-                    ->required(),
-                Forms\Components\FileUpload::make('thumbnail')
-                    ->label('Gambar Utama')
-                    ->image()
-                    ->columnSpan(2)
-                    ->directory('products')
-                    ->required(),
-                Forms\Components\Select::make('category_id')
-                    ->label('Kategori Produk')
-                    ->relationship('category', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('price')
-                    ->label('Harga Produk')
-                    ->numeric()
-                    ->prefix('Rp')
-                    ->required(),
-                Forms\Components\Repeater::make('color')
-                    ->schema([
-                        Forms\Components\ColorPicker::make('value')->label('Warna')
-                            ->nullable(),
-                    ])
-                    ->label('Warna Opsional')
-                    ->addActionLabel('Tambah Warna'),
-                Forms\Components\Repeater::make('size')
-                    ->schema([
-                        Forms\Components\TextInput::make('value')->label('Ukuran')
-                            ->nullable(),
-                    ])
-                    ->label('Ukuran Opsional')
-                    ->addActionLabel('Tambah Ukuran'),
-                Forms\Components\TextInput::make('stock')
-                    ->label('Stok Produk')
-                    ->numeric()
-                    ->required(),
-                Forms\Components\RichEditor::make('description')
-                    ->label('Deskripsi Produk')
-                    ->columnSpan(2)
-                    ->required(),
-                Forms\Components\FileUpload::make('certificate')
-                    ->label('Sertifikat Produk')
-                    ->columnSpan(2)
-                    ->directory('certificates')
+                    ->label('Slug (Terisi Otomatis)')
                     ->required(),
                 Forms\Components\Repeater::make('images')
                     ->label('Gambar Produk')
@@ -97,6 +56,48 @@ class ProductResource extends Resource
                             ->required(),
                     ])
                     ->addActionLabel('Tambah Gambar'),
+                // Forms\Components\FileUpload::make('thumbnail')
+                //     ->label('Gambar Utama')
+                //     ->image()
+                //     ->columnSpan(2)
+                //     ->directory('products')
+                //     ->required(),
+                Forms\Components\Select::make('category_id')
+                    ->label('Kategori Produk')
+                    ->relationship('category', 'name')
+                    ->required(),
+                Forms\Components\TextInput::make('price')
+                    ->label('Harga Produk')
+                    ->numeric()
+                    ->prefix('Rp')
+                    ->required(),
+                Forms\Components\Repeater::make('color')
+                    ->schema([
+                        Forms\Components\TextInput::make('value')->label('Warna')
+                            ->nullable(),
+                    ])
+                    ->label('Warna (Opsional)')
+                    ->addActionLabel('Tambah Warna'),
+                Forms\Components\Repeater::make('size')
+                    ->schema([
+                        Forms\Components\TextInput::make('value')->label('Ukuran')
+                            ->nullable(),
+                    ])
+                    ->label('Ukuran (Opsional)')
+                    ->addActionLabel('Tambah Ukuran'),
+                Forms\Components\TextInput::make('stock')
+                    ->label('Stok Produk')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\RichEditor::make('description')
+                    ->label('Deskripsi Produk')
+                    ->columnSpan(2)
+                    ->required(),
+                Forms\Components\FileUpload::make('certificate')
+                    ->label('Sertifikat Produk (Opsional)')
+                    ->columnSpan(2)
+                    ->directory('certificates')
+                    ->nullable(),
             ]);
     }
 
@@ -113,8 +114,6 @@ class ProductResource extends Resource
                     ->label('Harga')
                     ->formatStateUsing(fn($state) => number_format($state, 0, ',', '.'))
                     ->prefix('Rp '),
-                Tables\Columns\ImageColumn::make('thumbnail')
-                    ->label('Gambar'),
             ])
             ->filters([
                 //

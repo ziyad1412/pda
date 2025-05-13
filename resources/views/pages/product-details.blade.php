@@ -37,13 +37,16 @@
                           </script>
                             <div class="swiper-wrapper">
                                 <!-- Gambar Thumbnail Produk -->
+                                @php
+                                    $firstImage = $product->images->first();
+                                @endphp
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('storage/' . $product->thumbnail) }}" class="img-fluid"
+                                    <img src="{{ asset('storage/' . $firstImage->image) }}" class="img-fluid"
                                         alt="{{ $product->title }}">
                                 </div>
 
                                 <!-- Gambar Tambahan dari product_images -->
-                                @foreach ($productImages as $image)
+                                @foreach ($productImages->skip(1) as $image)
                                     <div class="swiper-slide">
                                         <img src="{{ asset('storage/' . $image->image) }}" class="img-fluid"
                                             alt="Product Image">
@@ -87,7 +90,8 @@
                                     <h5 class="fw-bold">Pilih Ukuran:</h5>
                                     <div class="d-flex gap-2 flex-wrap">
                                         @foreach ($sizes as $size)
-                                            <button class="size-btn">{{ $size }}</button>
+                                            <button class="size-btn btn btn-outline-dark btn-sm"
+                                                data-size="{{ $size }}">{{ $size }}</button>
                                         @endforeach
                                     </div>
                                 </div>
@@ -106,8 +110,10 @@
                                     <h5 class="fw-bold">Pilih Warna:</h5>
                                     <div class="d-flex gap-2 flex-wrap">
                                         @foreach ($colors as $color)
-                                            <button class="color-btn" data-color="{{ $color }}"
-                                                style="background-color: {{ strtolower($color) }};"></button>
+                                            <button type="button" class="color-btn btn btn-outline-dark btn-sm"
+                                                data-color="{{ $color }}">
+                                                {{ ucfirst($color) }}
+                                            </button>
                                         @endforeach
                                     </div>
                                 </div>
@@ -116,11 +122,14 @@
 
 
 
-                            <!-- Button Download Dokumen -->
-                            <a href="{{ asset('storage/' . $product->certificate) }}" target="_blank"
-                                class="btn btn-outline-primary w-100 mb-3">
-                                <i class="bi bi-download"></i> Download Dokumen
-                            </a>
+                            @if ($product->certificate)
+                                <!-- Button Download Dokumen -->
+                                <a href="{{ asset('storage/' . $product->certificate) }}" target="_blank"
+                                    class="btn btn-outline-primary w-100 mb-3">
+                                    <i class="bi bi-download"></i> Download Dokumen
+                                </a>
+                            @endif
+
 
                             <!-- Button WhatsApp -->
                             <a id="whatsappButton"
@@ -138,12 +147,9 @@
                             <h4 class="fw-bold">Spesifikasi Produk</h4>
                             <ul class="list-unstyled">
                                 <li><strong>Kategori:</strong>
-                                    Safety Apparel
+                                    {{ $product->category->name }}
                                 </li>
-                                <li><strong>Stok:</strong> 137</li>
-                                <li><strong>Merek:</strong> -</li>
-                                <li><strong>Fitur Pakaian Pelindung:</strong> Tahan Api, Insulator, Berlapis</li>
-                                <li><strong>No. Izin Edar (Alkes, PKRT):</strong> -</li>
+                                <li><strong>Stok:</strong> {{ $product->stock }}</li>
                                 <li><strong>Dikirim Dari:</strong> Kota Jakarta Barat</li>
                             </ul>
                         </div>
@@ -171,33 +177,29 @@
 
             </div>
 
-            <style>
-                .size-btn,
-                .color-btn {
-                    border: 1px solid #ddd;
-                    padding: 10px 15px;
-                    cursor: pointer;
-                    font-size: 16px;
-                    border-radius: 5px;
-                    transition: all 0.3s ease;
-                }
 
-                .size-btn:hover,
-                .color-btn:hover,
-                .size-btn.active,
-                .color-btn.active {
-                    border-color: #000;
-                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-                    transform: scale(1.05);
-                }
 
-                .color-btn {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    padding: 0;
-                }
-            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const sizeButtons = document.querySelectorAll('.size-btn');
+                    const colorButtons = document.querySelectorAll('.color-btn');
+
+                    sizeButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            sizeButtons.forEach(btn => btn.classList.remove('active'));
+                            button.classList.add('active');
+                        });
+                    });
+
+                    colorButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            colorButtons.forEach(btn => btn.classList.remove('active'));
+                            button.classList.add('active');
+                        });
+                    });
+                });
+            </script>
+
 
 
 

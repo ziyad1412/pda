@@ -30,7 +30,10 @@
                                 <article class="position-relative h-100 border rounded shadow-sm p-3">
 
                                     <div class="post-img position-relative overflow-hidden">
-                                        <img src="{{ asset('storage/' . $product->thumbnail) }}" class="img-fluid rounded"
+                                        @php
+                                            $firstImage = $product->images->first();
+                                        @endphp
+                                        <img src="{{ asset('storage/' . $firstImage->image) }}" class="img-fluid rounded"
                                             alt="{{ $product->name }}">
                                     </div>
 

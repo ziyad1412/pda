@@ -81,7 +81,7 @@
                         <div class="stats-item d-flex flex-column align-items-center w-100 h-100">
                             <span class="stats-number">500+</span>
                             <i class="bi bi-people color-orange"></i>
-                            <p>Proyek Terselesaikan</p>
+                            <p>Produk Tersedia</p>
                         </div>
                     </div><!-- End Stats Item -->
 

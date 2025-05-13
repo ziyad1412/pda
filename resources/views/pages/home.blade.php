@@ -202,7 +202,7 @@
                 <div class="row gy-4 justify-content-center">
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="card-item text-center">
-                            <a href="https://www.tokopedia.com/namatoko" target="_blank">
+                            <a href="https://www.tokopedia.com/ptdhardware" target="_blank">
                                 <img src="{{ asset('template/assets/img/tokped.jpg') }}" alt="Tokopedia"
                                     class="img-fluid">
                             </a>
@@ -211,7 +211,7 @@
 
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="card-item text-center">
-                            <a href="https://shopee.co.id/namatoko" target="_blank">
+                            <a href="https://shopee.co.id/ptdhardware" target="_blank">
                                 <img src="{{ asset('template/assets/img/shopee.jpg') }}" alt="Shopee"
                                     class="img-fluid">
                             </a>
@@ -480,8 +480,11 @@
                                 <article class="position-relative h-100 border rounded shadow-sm p-3">
 
                                     <div class="post-img position-relative overflow-hidden">
-                                        <img src="{{ asset('storage/' . $product->thumbnail) }}"
-                                            class="img-fluid rounded" alt="{{ $product->name }}">
+                                        @php
+                                            $firstImage = $product->images->first();
+                                        @endphp
+                                        <img src="{{ asset('storage/' . $firstImage->image) }}" class="img-fluid rounded"
+                                            alt="{{ $product->name }}">
                                     </div>
 
                                     <div class="post-content d-flex flex-column mt-3">
