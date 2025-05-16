@@ -919,6 +919,24 @@ section,
     z-index: 1;
 }
 
+@media (max-width: 768px) {
+    .hero {
+        min-height: 28vh; /* Hapus tinggi penuh */
+    }
+
+    .hero .carousel-item {
+        height: auto;
+    }
+
+    .hero .carousel-item img {
+        position: static;
+        height: auto;
+        object-fit: contain;
+        max-height: 100vh; /* jaga supaya tidak terlalu tinggi */
+        width: 100%;
+    }
+}
+
 .hero .carousel-item::before {
     content: "";
     /* background-color: color-mix(

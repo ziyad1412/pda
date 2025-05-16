@@ -17,25 +17,11 @@
         <section id="hero" class="hero section dark-background">
             <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
-                <div class="carousel-item">
-                    <img src="{{ asset('template/assets/img/hero-carousel/Sliders-1.jpg') }}" alt="">
-                </div>
-
-                <div class="carousel-item active">
-                    <img src="{{ asset('template/assets/img/hero-carousel/Sliders-2.jpg') }}" alt="">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="{{ asset('template/assets/img/hero-carousel/Sliders-3.jpg') }}" alt="">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="{{ asset('template/assets/img/hero-carousel/Sliders-4.jpg') }}" alt="">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="{{ asset('template/assets/img/hero-carousel/Sliders-5.jpg') }}" alt="">
-                </div>
+                @foreach ($sliders as $index => $slider)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <img src="{{ asset('storage/' . $slider->image) }}" alt="Slider">
+                    </div>
+                @endforeach
 
                 <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
@@ -67,7 +53,7 @@
                             <div class="row">
                                 <div class="col-xl-5">
                                     <div class="card-bg"><img src="{{ asset('template/assets/img/constructions-1.jpg') }}"
-                                            alt=""></div>
+                                            class="img-fluid" alt=""></div>
                                 </div>
                                 <div class="col-xl-7 d-flex align-items-center">
                                     <div class="card-body">
@@ -230,8 +216,7 @@
             <div class="container">
                 <div class="row justify-content-around gy-4">
                     <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('template/assets/img/alt-services.jpg') }}"
-                            alt="Keamanan dan Keselamatan PTD">
+                        <img src="{{ asset('template/assets/img/alt-services.jpg') }}" alt="Keamanan dan Keselamatan PTD">
                     </div>
 
                     <div class="col-lg-5 d-flex flex-column justify-content-center" data-aos="fade-up"

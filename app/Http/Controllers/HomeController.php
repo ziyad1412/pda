@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Footer;
+use App\Models\HomeSlider;
 
 class HomeController extends Controller
 {
@@ -21,9 +22,12 @@ class HomeController extends Controller
         // ambil 3 artikel terbaru
         $articles = Article::latest()->take(3)->get();
 
+        // Ambil semua slider yang aktif
+        $sliders = HomeSlider::latest()->get();
+
         $footer = Footer::first(); // Ambil satu data footer
 
-        return view('pages.home', compact('products', 'categories', 'footer', 'articles'));
+        return view('pages.home', compact('products', 'categories', 'footer', 'articles', 'sliders'));
     }
 
     public function about()
