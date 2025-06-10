@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFooter extends CreateRecord
 {
     protected static string $resource = FooterResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return FooterResource::getUrl('index');
+    }
 }

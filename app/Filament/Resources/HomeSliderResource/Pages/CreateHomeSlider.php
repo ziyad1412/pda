@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateHomeSlider extends CreateRecord
 {
     protected static string $resource = HomeSliderResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return HomeSliderResource::getUrl('index');
+    }
 }

@@ -16,4 +16,9 @@ class EditHomeSlider extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return HomeSliderResource::getUrl('index');
+    }
 }

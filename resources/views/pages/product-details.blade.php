@@ -119,7 +119,27 @@
                                 </div>
                             @endif
 
+                            <!-- Pilihan Custom -->
+                            @php
+                                $customs =
+                                    !empty($product->custom) && is_array($product->custom)
+                                        ? array_filter(Arr::flatten($product->custom)) // Hapus elemen kosong
+                                        : [];
+                            @endphp
 
+                            @if (!empty($customs))
+                                <div class="mb-3">
+                                    <h5 class="fw-bold">Pilih Custom:</h5>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        @foreach ($customs as $custom)
+                                            <button type="button" class="custom-btn btn btn-outline-dark btn-sm"
+                                                data-custom="{{ $custom }}">
+                                                {{ ucfirst($custom) }}
+                                            </button>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
 
 
                             @if ($product->certificate)
@@ -130,13 +150,6 @@
                                 </a>
                             @endif
 
-
-                            <!-- Button WhatsApp -->
-                            {{-- <a id="whatsappButton"
-                                href="https://wa.me/{{ $footer->phone }}?text=Saya%20ingin%20order%20{{ urlencode($product->name) }}"
-                                class="btn btn-success w-100" target="_blank">
-                                <i class="bi bi-whatsapp"></i> Order via WhatsApp
-                            </a> --}}
                             <button id="whatsappButton" class="btn btn-success w-100">
                                 <i class="bi bi-whatsapp"></i> Order via WhatsApp
                             </button>
@@ -186,16 +199,19 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     const sizeButtons = document.querySelectorAll('.size-btn');
                     const colorButtons = document.querySelectorAll('.color-btn');
+                    const customButtons = document.querySelectorAll('.custom-btn');
                     const whatsappButton = document.getElementById('whatsappButton');
 
                     let selectedSize = '';
                     let selectedColor = '';
+                    let selectedCustom = '';
 
                     function generateLink() {
                         const baseText = `Saya ingin order {{ $product->name }},`;
                         const sizeText = selectedSize ? `\nUkuran: ${selectedSize}` : '';
                         const colorText = selectedColor ? `\nWarna: ${selectedColor}` : '';
-                        const finalText = encodeURIComponent(baseText + sizeText + colorText);
+                        const customText = selectedCustom ? `\nCustom: ${selectedCustom}` : '';
+                        const finalText = encodeURIComponent(baseText + sizeText + colorText + customText);
                         const phone = "{{ $footer->phone }}";
 
                         return `https://wa.me/${phone}?text=${finalText}`;
@@ -220,6 +236,14 @@
                             colorButtons.forEach(btn => btn.classList.remove('active'));
                             button.classList.add('active');
                             selectedColor = button.dataset.color;
+                        });
+                    });
+
+                    customButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            customButtons.forEach(btn => btn.classList.remove('active'));
+                            button.classList.add('active');
+                            selectedCustom = button.dataset.custom;
                         });
                     });
                 });

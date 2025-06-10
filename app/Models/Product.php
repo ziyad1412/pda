@@ -16,6 +16,7 @@ class Product extends Model
         'price',
         'color',
         'size',
+        'custom',
         'stock',
         'description',
         'certificate',
@@ -24,6 +25,7 @@ class Product extends Model
     protected $casts = [
         'color' => 'array', // Pastikan Laravel menganggap ini sebagai array (JSON)
         'size' => 'array',
+        'custom' => 'array',
     ];
 
     public function category()

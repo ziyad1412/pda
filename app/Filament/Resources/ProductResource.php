@@ -72,6 +72,7 @@ class ProductResource extends Resource
                     ->prefix('Rp')
                     ->required(),
                 Forms\Components\Repeater::make('color')
+                    ->columnSpan(2)
                     ->schema([
                         Forms\Components\TextInput::make('value')->label('Warna')
                             ->nullable(),
@@ -79,13 +80,23 @@ class ProductResource extends Resource
                     ->label('Warna (Opsional)')
                     ->addActionLabel('Tambah Warna'),
                 Forms\Components\Repeater::make('size')
+                    ->columnSpan(2)
                     ->schema([
                         Forms\Components\TextInput::make('value')->label('Ukuran')
                             ->nullable(),
                     ])
                     ->label('Ukuran (Opsional)')
                     ->addActionLabel('Tambah Ukuran'),
+                Forms\Components\Repeater::make('custom')
+                    ->columnSpan(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('value')->label('Custom')
+                            ->nullable(),
+                    ])
+                    ->label('Custom (Opsional)')
+                    ->addActionLabel('Tambah Custom'),
                 Forms\Components\TextInput::make('stock')
+                    ->columnSpan(2)
                     ->label('Stok Produk')
                     ->numeric()
                     ->required(),
