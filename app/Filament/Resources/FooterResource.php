@@ -17,11 +17,11 @@ class FooterResource extends Resource
 {
     protected static ?string $model = Footer::class;
 
-    protected static ?string $label = 'Alamat & Kontak';
+    protected static ?string $label = 'Footer (Alamat & Kontak)';
 
     protected static ?string $navigationIcon = 'heroicon-o-map';
 
-    protected static ?string $navigationLabel = 'Alamat & Kontak';
+    protected static ?string $navigationLabel = 'Footer (Alamat & Kontak)';
 
     public static function form(Form $form): Form
     {
@@ -40,6 +40,45 @@ class FooterResource extends Resource
                     ->nullable(),
                 Forms\Components\TextInput::make('facebook')
                     ->nullable(),
+                Forms\Components\Repeater::make('important_links')
+                    ->label('Tautan Penting')
+                    ->columnSpan(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->label('Judul Tautan')
+                            ->required(),
+                        Forms\Components\TextInput::make('url')
+                            ->label('URL Tautan')
+                            ->url()
+                            ->required(),
+                    ])
+                    ->addActionLabel('Tambah Tautan'),
+                Forms\Components\Repeater::make('services')
+                    ->label('Layanan')
+                    ->columnSpan(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->label('Judul Layanan')
+                            ->required(),
+                        Forms\Components\TextInput::make('url')
+                            ->label('URL Layanan')
+                            ->url()
+                            ->required(),
+                    ])
+                    ->addActionLabel('Tambah Layanan'),
+                Forms\Components\Repeater::make('partners')
+                    ->label('Mitra')
+                    ->columnSpan(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Nama Mitra')
+                            ->required(),
+                        Forms\Components\TextInput::make('url')
+                            ->label('URL Mitra')
+                            ->url()
+                            ->required(),
+                    ])
+                    ->addActionLabel('Tambah Mitra'),
             ]);
     }
 
@@ -53,7 +92,6 @@ class FooterResource extends Resource
                     ->label('Email'),
                 Tables\Columns\TextColumn::make('address')
                     ->label('Alamat'),
-
             ])
             ->filters([
                 //

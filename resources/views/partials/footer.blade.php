@@ -20,33 +20,28 @@
             <div class="col-lg-2 col-md-3 footer-links">
                 <h4>Tautan Penting</h4>
                 <ul>
-                    <li><a href="{{ url('/') }}">Beranda</a></li>
-                    <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
-                    <li><a href="{{ url('/products') }}">Produk Kami</a></li>
-                    <li><a href="{{ url('/blog') }}">Artikel</a></li>
-                    <li><a href="{{ url('/contact') }}">Kontak</a></li>
+                    @foreach ($footer->important_links ?? [] as $link)
+                        <li><a href="{{ $link['url'] }}">{{ $link['title'] }}</a></li>
+                    @endforeach
+
                 </ul>
             </div>
 
             <div class="col-lg-3 col-md-4 footer-links">
                 <h4>Layanan Kami</h4>
                 <ul>
-                    <li><a href="#">Peralatan Keselamatan Kerja (K3)</a></li>
-                    <li><a href="#">Alat Teknik dan Konstruksi</a></li>
-                    <li><a href="#">Peralatan Kelistrikan & Mekanikal</a></li>
-                    <li><a href="#">Pemeliharaan & Perbaikan</a></li>
-                    <li><a href="#">Solusi Infrastruktur & Konstruksi</a></li>
+                    @foreach ($footer->services ?? [] as $service)
+                        <li><a href="{{ $service['url'] }}">{{ $service['title'] }}</a></li>
+                    @endforeach
                 </ul>
             </div>
 
             <div class="col-lg-3 col-md-4 footer-links">
                 <h4>Mitra Kami</h4>
                 <ul>
-                    <li><a href="#">Instalasi Listrik Industri</a></li>
-                    <li><a href="#">Sistem Bangunan Komersial</a></li>
-                    <li><a href="#">Solusi Energi Terbarukan</a></li>
-                    <li><a href="#">Sistem HVAC & Pendinginan</a></li>
-                    <li><a href="#">Otomasi Pabrik & Kontrol</a></li>
+                    @foreach ($footer->partners ?? [] as $partner)
+                        <li><a href="{{ $partner['url'] }}">{{ $partner['name'] }}</a></li>
+                    @endforeach
                 </ul>
             </div>
 

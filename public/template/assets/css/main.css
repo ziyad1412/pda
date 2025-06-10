@@ -796,6 +796,12 @@ section,
     position: relative;
 }
 
+@media (max-width: 576px) {
+    .section-title h2 {
+        font-size: 20px; /* Ubah sesuai kebutuhan */
+    }
+}
+
 .section-title h2:before,
 .section-title h2:after {
     content: "";

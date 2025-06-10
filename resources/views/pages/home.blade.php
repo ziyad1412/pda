@@ -41,7 +41,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Kenapa Memilih Putra Tunggal Daya?</h2>
+                <h2>Keunggulan Kami</h2>
             </div><!-- End Section Title -->
 
             <div class="container">

@@ -132,11 +132,14 @@
 
 
                             <!-- Button WhatsApp -->
-                            <a id="whatsappButton"
-                                href="https://wa.me/{{ $footer->phone }}?text=Saya%20ingin%20order%20{{ urlencode($product->title) }}"
+                            {{-- <a id="whatsappButton"
+                                href="https://wa.me/{{ $footer->phone }}?text=Saya%20ingin%20order%20{{ urlencode($product->name) }}"
                                 class="btn btn-success w-100" target="_blank">
                                 <i class="bi bi-whatsapp"></i> Order via WhatsApp
-                            </a>
+                            </a> --}}
+                            <button id="whatsappButton" class="btn btn-success w-100">
+                                <i class="bi bi-whatsapp"></i> Order via WhatsApp
+                            </button>
                         </div>
                     </div>
                     <!-- End Product Info -->
@@ -183,18 +186,40 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     const sizeButtons = document.querySelectorAll('.size-btn');
                     const colorButtons = document.querySelectorAll('.color-btn');
+                    const whatsappButton = document.getElementById('whatsappButton');
+
+                    let selectedSize = '';
+                    let selectedColor = '';
+
+                    function generateLink() {
+                        const baseText = `Saya ingin order {{ $product->name }},`;
+                        const sizeText = selectedSize ? `\nUkuran: ${selectedSize}` : '';
+                        const colorText = selectedColor ? `\nWarna: ${selectedColor}` : '';
+                        const finalText = encodeURIComponent(baseText + sizeText + colorText);
+                        const phone = "{{ $footer->phone }}";
+
+                        return `https://wa.me/${phone}?text=${finalText}`;
+                    }
+
+                    whatsappButton.addEventListener('click', function() {
+                        const link = generateLink();
+                        window.open(link, '_blank');
+                    });
 
                     sizeButtons.forEach(button => {
                         button.addEventListener('click', () => {
                             sizeButtons.forEach(btn => btn.classList.remove('active'));
                             button.classList.add('active');
+                            selectedSize = button.dataset.size;
                         });
                     });
+
 
                     colorButtons.forEach(button => {
                         button.addEventListener('click', () => {
                             colorButtons.forEach(btn => btn.classList.remove('active'));
                             button.classList.add('active');
+                            selectedColor = button.dataset.color;
                         });
                     });
                 });

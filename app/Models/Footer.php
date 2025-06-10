@@ -15,5 +15,14 @@ class Footer extends Model
         'email',
         'instagram',
         'facebook',
+        'important_links',
+        'services',
+        'partners'
+    ];
+
+    protected $casts = [
+        'important_links' => 'array',
+        'services' => 'array',
+        'partners' => 'array',
     ];
 }
